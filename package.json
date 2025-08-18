@@ -1,0 +1,21 @@
+{
+  "name": "solvd-online-clothing-store",
+  "version": "1.0.0",
+  "description": "Personal project for the SOLVD Laba Node.js training – Online Clothing Store backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Dorota Frasunkiewicz <frasunkiewicz.dorota@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^9.33.0",
+    "prettier": "^3.6.2"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
