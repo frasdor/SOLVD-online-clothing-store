@@ -1,6 +1,8 @@
 const crypto = require('crypto');
+require("dotenv").config();
 
-const SECRET = 'supersecretkey';
+
+const SECRET = process.env.SECRET;;
 
 function base64urlEncode(str) {
     return Buffer.from(str)
