@@ -29,11 +29,14 @@ CREATE TABLE IF NOT EXISTS products (
     updated_at TIMESTAMP DEFAULT now()
 );
 
+-- Order status enum
+CREATE TYPE order_status AS ENUM ('pending', 'paid', 'shipped', 'delivered', 'cancelled');
+
 -- Orders
 CREATE TABLE IF NOT EXISTS orders (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID REFERENCES users(id),
-    status VARCHAR(50) NOT NULL,
+    status order_status DEFAULT 'pending' NOT NULL,
     created_at TIMESTAMP DEFAULT now(),
     updated_at TIMESTAMP DEFAULT now()
 );
@@ -48,3 +51,20 @@ CREATE TABLE IF NOT EXISTS order_items (
     created_at TIMESTAMP DEFAULT now(),
     updated_at TIMESTAMP DEFAULT now()
 );
+
+-- Sizes table
+CREATE TABLE IF NOT EXISTS sizes (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    size VARCHAR(10) NOT NULL
+);
+
+-- Product Sizes table
+CREATE TABLE IF NOT EXISTS product_sizes (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    product_id UUID NOT NULL REFERENCES products(id) ON DELETE CASCADE,
+    size_id UUID NOT NULL REFERENCES sizes(id) ON DELETE CASCADE,
+    stock INTEGER DEFAULT 0 NOT NULL,
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now()
+);
+
