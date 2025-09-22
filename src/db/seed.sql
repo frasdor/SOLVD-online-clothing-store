@@ -1,3 +1,10 @@
+-- Clear existing data
+TRUNCATE TABLE product_sizes RESTART IDENTITY CASCADE;
+TRUNCATE TABLE products RESTART IDENTITY CASCADE;
+TRUNCATE TABLE categories RESTART IDENTITY CASCADE;
+TRUNCATE TABLE sizes RESTART IDENTITY CASCADE;
+TRUNCATE TABLE users RESTART IDENTITY CASCADE;
+
 -- Users
 INSERT INTO users (name, email, password)
 VALUES
@@ -34,23 +41,41 @@ VALUES
 -- T-Shirt sizes
 INSERT INTO product_sizes (product_id, size_id, stock)
 SELECT p.id, s.id, 50
-FROM products p, sizes s
-WHERE p.name='Basic T-Shirt';
+FROM products p
+JOIN sizes s ON s.sorting_order BETWEEN 1 AND 6
+WHERE p.name='Basic T-Shirt'
+ORDER BY s.sorting_order;
 
 -- Jeans sizes
 INSERT INTO product_sizes (product_id, size_id, stock)
 SELECT p.id, s.id, 30
-FROM products p, sizes s
-WHERE p.name='Blue Jeans';
+FROM products p
+JOIN sizes s ON s.sorting_order BETWEEN 1 AND 6
+WHERE p.name='Blue Jeans'
+ORDER BY s.sorting_order;
 
 -- Hoodie sizes
 INSERT INTO product_sizes (product_id, size_id, stock)
 SELECT p.id, s.id, 40
-FROM products p, sizes s
-WHERE p.name='Cozy Hoodie';
+FROM products p
+JOIN sizes s ON s.sorting_order BETWEEN 1 AND 6
+WHERE p.name='Cozy Hoodie'
+ORDER BY s.sorting_order;
 
 -- Dress sizes
 INSERT INTO product_sizes (product_id, size_id, stock)
 SELECT p.id, s.id, 25
-FROM products p, sizes s
-WHERE p.name='Summer Dress';
+FROM products p
+JOIN sizes s ON s.sorting_order BETWEEN 1 AND 6
+WHERE p.name='Summer Dress'
+ORDER BY s.sorting_order;
+
+-- Check seeded data with sizes ordered XS -> XXL
+SELECT 
+    p.name AS product_name,
+    s.size,
+    ps.stock
+FROM product_sizes ps
+JOIN products p ON ps.product_id = p.id
+JOIN sizes s ON ps.size_id = s.id
+ORDER BY p.name, s.sorting_order;
