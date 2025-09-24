@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const client = require('../db/client');
 
-// GET /products?size=M&category=T-Shirt&name=shirt
-router.get('/', async (req, res) => {
+// GET /products?size=M&category=T-Shirts&name=shirt
+router.get('/products', async (req, res) => {
   const { size, category, name } = req.query;
 
   try {
