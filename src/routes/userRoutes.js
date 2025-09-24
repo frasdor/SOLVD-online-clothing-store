@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { verifyJWT } = require('../auth/jwt');
 
-router.get('/profile', (req, res) => {
+router.get('/user/profile', (req, res) => {
     const authHeader = req.headers['authorization'];
     if (!authHeader) return res.status(401).send('Missing token');
 

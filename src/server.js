@@ -10,9 +10,9 @@ const app = express();
 app.use(express.json());
 
 
-app.use('/auth', authRoutes);
-app.use('/user', userRoutes);
-app.use('/products', productRoutes);
+app.use('/api', authRoutes);
+app.use('/api', userRoutes);
+app.use('/api', productRoutes);
 
 
 const PORT = process.env.PORT || 3000;

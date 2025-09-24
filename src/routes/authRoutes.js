@@ -7,7 +7,7 @@ const client = require('../db/client');
 
 
 // LOGIN
-router.post('/login', async (req, res) => {
+router.post('/auth/login', async (req, res) => {
     const { email, password } = req.body;
 
     try {
@@ -19,14 +19,17 @@ router.post('/login', async (req, res) => {
         if (!match) return res.status(401).send('Invalid credentials');
 
         const token = createJWT({ userId: user.id, email: user.email });
-        res.json({ token });
+        res.json({
+            message: "Login successful",
+            token: token
+        });
     } catch (err) {
         console.error(err);
         res.status(500).send('Server error');
     }
 });
 // REGISTER
-router.post('/register', async (req, res) => {
+router.post('/auth/register', async (req, res) => {
     const { name, email, password } = req.body;
 
     try {
@@ -41,7 +44,11 @@ router.post('/register', async (req, res) => {
 
         const token = createJWT({ userId: newUser.id, email: newUser.email });
 
-        res.status(201).json({ user: newUser, token });
+        res.status(201).json({
+            message: "Registration successful",
+            user: newUser,
+            token: token
+        });
     } catch (err) {
         console.error(err);
         if (err.code === '23505') { 
