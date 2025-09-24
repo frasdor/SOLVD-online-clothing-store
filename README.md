@@ -27,7 +27,7 @@ It is a backend API that allows you to manage resources for an online clothing s
 
 Detailed Table Information
 
-Users
+**Users**
 | Column      | Type         | Description                      |
 | ----------- | ------------ | -------------------------------- |
 | id          | UUID (PK)    | Unique identifier of the user    |
@@ -39,7 +39,7 @@ Users
 
 
 
-Categories
+**Categories**
 | Column      | Type         | Description                           |
 | ----------- | ------------ | ------------------------------------- |
 | id          | UUID (PK)    | Unique identifier of the category     |
@@ -49,7 +49,7 @@ Categories
 | updated\_at | TIMESTAMP    | When the record was last updated      |
 
 
-Products
+**Products**
 | Column       | Type          | Description                         |
 | ------------ | ------------- | ----------------------------------- |
 | id           | UUID (PK)     | Unique identifier of the product    |
@@ -62,7 +62,7 @@ Products
 
 
 
-Sizes
+**Sizes**
 | Column         | Type        | Description                       |
 | -------------- | ----------- | --------------------------------- |
 | id             | UUID (PK)   | Unique identifier of the size     |
@@ -71,7 +71,7 @@ Sizes
 
 
 
-Product Sizes
+**Product Sizes**
 | Column      | Type      | Description                                |
 | ----------- | --------- | ------------------------------------------ |
 | id          | UUID (PK) | Unique identifier of the product-size pair |
@@ -82,7 +82,7 @@ Product Sizes
 | updated\_at | TIMESTAMP | When the record was last updated           |
 
 
-Orders
+**Orders**
 | Column      | Type      | Description                                                          |
 | ----------- | --------- | -------------------------------------------------------------------- |
 | id          | UUID (PK) | Unique identifier of the order                                       |
@@ -93,7 +93,7 @@ Orders
 
 
 
-Order Items
+**Order Items**
 
 | Column            | Type          | Description                         |
 | ----------------- | ------------- | ----------------------------------- |
@@ -106,7 +106,7 @@ Order Items
 | updated\_at       | TIMESTAMP     | When the record was last updated    |
 
 
-Relationships Explained
+**Relationships Explained**
 
 The relationships between the tables are:
 
@@ -137,7 +137,7 @@ Each category can have many products, a product belongs to one category.
 
 ### Authentication
 
-Authentication Process
+**Authentication Process**
 
 This API uses JWT authentication. The steps for authentication are the following:
 Register a new user (optional if you already have an account).
@@ -174,7 +174,7 @@ Note: The password is hashed before storing in the database.
 
 #### Login
 
-Send a POST request to api/auth/login with a JSON body containing the email and password properties.
+Send a POST request to `api/auth/login` with a JSON body containing the email and password properties.
 
 Request example:
 ```json
@@ -201,9 +201,9 @@ Authorization: Bearer <your-token-here>
 This endpoint allows a logged-in user to fetch their profile data. It is protected, so a valid JWT token must be provided.
 
 Endpoint:
-GET api/user/profile
+GET `api/user/profile`
 Request headers:
-Authorization: Bearer <your_jwt_token>
+`Authorization`: Bearer <your_jwt_token>
 Body: none
 
 Response
@@ -221,21 +221,20 @@ If the token is valid:
 ### Products
 
 After login, you can:
-Search for clothing items by size (S, M, L, XL,XXL).
-Filter products by category (e.g., T-Shirt, Hoodie, Shoes).
-Search by product name (partial matches supported).
-Only see products that are in stock.
+- Search for clothing items by size (S, M, L, XL, XXL)
+- Filter products by category (e.g., T-Shirt, Hoodie, Shoes)
+- Search by product name (partial matches supported)
+- Only see products that are in stock
 
-
-Fetch Products by Size
+**Fetch Products by Size**
 
 You can filter products by size using the size query parameter. Only products with available stock (stock > 0) in the requested size will be returned.
 
 Endpoint
-GET /api/products?size=S
+GET `/api/products?size=S`
 
 Request headers:
-Authorization: Bearer <your_jwt_token>
+`Authorization`: Bearer <your_jwt_token>
 
 Response Example
 ```json
@@ -279,14 +278,14 @@ Response Example
 ]
 ```
 
-Fetch Products with Multiple Filters
-You can combine size, category, and name query parameters to narrow down results.
+**Fetch Products with Multiple Filters**
+You can combine `size`, `category`, and `name` query parameters to narrow down results.
 
 Endpoint:
-GET /api/products?size=M&category=T-Shirts&name=shirt
+GET `/api/products?size=M&category=T-Shirts&name=shirt`
 
 Request headers:
-Authorization: Bearer <your_jwt_token>
+`Authorization`: Bearer <your_jwt_token>
 
 Response example:
 ```json
