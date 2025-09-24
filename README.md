@@ -9,7 +9,7 @@ Personal project for the SOLVD Laba Node.js training – Online Clothing Store b
 5. [API Endpoints](#api-endpoints)
    - [Authentication](#authentication)
      - [Register](#register)
-     - [Login][def]
+     - [Login](#login)
    - [User Profile](#user-profile)
    - [Products](#products)
 6. [Present Limitations](#present-limitations)
@@ -21,16 +21,7 @@ This project is a **personal project** developed as part of the **SOLVD Laba Nod
 
 It is a backend API that allows you to manage resources for an online clothing store, including products, categories, and available sizes. Customers can search for clothing items by size and category, and the API returns a list of matching products.
 
-## Present limitations:
-
-- The API is not deployed yet, so it must be run locally.
-
-- Management of products (adding, editing, and deleting) is a planned feature and will be implemented in future steps.
-
-
-## Entity Relationship Diagram
-
-![ERD](src/assets/erd.jpg)
+## Setup
 
 ## Database Schema
 
@@ -118,7 +109,6 @@ Order Items
 Relationships Explained
 
 The relationships between the tables are:
-The relationships between the tables are:
 
 users (1) —— (N) orders
 A user can have many orders, each order belongs to one user.
@@ -138,42 +128,37 @@ Each product-size has one size, a size can be used by many product-sizes.
 categories (1) —— (N) products
 Each category can have many products, a product belongs to one category.
 
+
+## Entity Relationship Diagram
+
+![ERD](src/assets/erd.jpg)
+
 ## API Endpoints
 
 ### Authentication
-Table of Contents
-
-Authentication Process
-
-[Register](#register)
-[Login](#login)
-
 
 Authentication Process
 
 This API uses JWT authentication. The steps for authentication are the following:
-
 Register a new user (optional if you already have an account).
-
 Login with your credentials to receive a JWT token.
-
 Use the token in the Authorization header (Bearer <token>) for all protected endpoints.
 
 #### Register
 
-Send a POST request to /auth/register with a JSON body containing the name, email, and password properties.
+Send a POST request to /api/auth/register with a JSON body containing the name, email, and password properties.
 
 Request example:
-
+```json
 {
   "name": "Dorota",
   "email": "dorota@example.com",
   "password": "password123"
 }
-
+```
 
 Response example:
-
+```json
 {
   "message": "Registration successful",
   "user": {
@@ -183,7 +168,7 @@ Response example:
     "created_at": "2025-09-24T12:34:56.000Z"
   }
 }
-
+```
 
 Note: The password is hashed before storing in the database.
 
@@ -192,20 +177,20 @@ Note: The password is hashed before storing in the database.
 Send a POST request to api/auth/login with a JSON body containing the email and password properties.
 
 Request example:
-
+```json
 {
   "email": "dorota@example.com",
   "password": "password123"
 }
-
+```
 
 Response example:
-
+```json
 {
   "message": "Login successful",
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRvcm90YUBleGFtcGxlLmNvbSIsImlhdCI6MTY5NjQyNTI0MH0.DgYg6XYZ..."
 }
-
+```
 
 Note: The token field contains your JWT token. Use it in the Authorization header for protected endpoints:
 Authorization: Bearer <your-token-here>
@@ -215,21 +200,15 @@ Authorization: Bearer <your-token-here>
 
 This endpoint allows a logged-in user to fetch their profile data. It is protected, so a valid JWT token must be provided.
 
-Endpoint
+Endpoint:
 GET api/user/profile
-
-Request
-
-Headers:
-
+Request headers:
 Authorization: Bearer <your_jwt_token>
-
-
 Body: none
 
 Response
-
 If the token is valid:
+```json
 {
     "message": "Protected data",
     "user": {
@@ -237,13 +216,11 @@ If the token is valid:
         "email": "dorota@example.com"
     }
 }
-
+```
 
 ### Products
 
-
 After login, you can:
-
 Search for clothing items by size (S, M, L, XL,XXL).
 Filter products by category (e.g., T-Shirt, Hoodie, Shoes).
 Search by product name (partial matches supported).
@@ -261,6 +238,7 @@ Request headers:
 Authorization: Bearer <your_jwt_token>
 
 Response Example
+```json
 [
     {
         "id": "7408ce76-392e-4186-ab0c-9d3f5b9c2a8b",
@@ -299,6 +277,7 @@ Response Example
         "size": "S"
     }
 ]
+```
 
 Fetch Products with Multiple Filters
 You can combine size, category, and name query parameters to narrow down results.
@@ -309,9 +288,8 @@ GET /api/products?size=M&category=T-Shirts&name=shirt
 Request headers:
 Authorization: Bearer <your_jwt_token>
 
-
 Response example:
-
+```json
 [
     {
         "id": "7408ce76-392e-4186-ab0c-9d3f5b9c2a8b",
@@ -323,3 +301,10 @@ Response example:
         "size": "M"
     }
 ]
+```
+
+## Present limitations:
+
+- The API is not deployed yet, so it must be run locally.
+
+- Management of products (adding, editing, and deleting) is a planned feature and will be implemented in future steps.
