@@ -26,8 +26,8 @@ It is a backend API that allows you to manage resources for an online clothing s
 - Clone this repository.  
 - Copy `.env.example` to `.env` and adjust values if needed.
 - Run `docker-compose up`.  
-- Access the **API** through [http://localhost:3000](http://localhost:3000).  
-- **Database**: available on localhost:5432 (PostgreSQL)
+- Access the **API** through `http://localhost:3000`.  
+- **Database**: available on `localhost:5432` (PostgreSQL)
 - In case you want to run tests, you can do so by running `npm run test`.  
 
 
