@@ -9,8 +9,9 @@ const client = new Client({
   port: process.env.DB_PORT,
 });
 
-client.connect()
-  .then(() => console.log('🚀 Connected to PostgreSQL!'))
-  .catch(err => console.error('❌ Database connection error:', err));
-
+if (process.env.NODE_ENV !== 'test') {
+  client.connect()
+    .then(() => console.log('🚀 Connected to PostgreSQL!'))
+    .catch(err => console.error('❌ Database connection error:', err));
+}
 module.exports = client;

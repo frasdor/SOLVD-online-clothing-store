@@ -1,19 +1,4 @@
-const express = require('express');
-const { Client } = require('pg');
-require('dotenv').config();
-
-const authRoutes = require('./routes/authRoutes.js');
-const userRoutes = require('./routes/userRoutes.js');
-const productRoutes = require('./routes/productRoutes.js');
-
-const app = express();
-app.use(express.json());
-
-
-app.use('/api', authRoutes);
-app.use('/api', userRoutes);
-app.use('/api', productRoutes);
-
+const app = require("./app");
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
