@@ -1,0 +1,18 @@
+# Node modules (instalowane w kontenerze)
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Systemowe
+.DS_Store
+
+# Git
+.git
+.gitignore
+
+# Logs
+logs
+*.log
+
+# Env files (sekrety powinny być trzymane poza obrazem)
+.env

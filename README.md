@@ -22,9 +22,16 @@ This project is a **personal project** developed as part of the **SOLVD Laba Nod
 It is a backend API that allows you to manage resources for an online clothing store, including products, categories, and available sizes. Customers can search for clothing items by size and category, and the API returns a list of matching products.
 
 ## Setup
+- Install [Docker](https://www.docker.com/).  
+- Clone this repository.  
+- Copy `.env.example` to `.env` and adjust values if needed.
+- Run `docker-compose up`.  
+- Access the **API** through `http://localhost:3000`.  
+- **Database**: available on `localhost:5432` (PostgreSQL)
+- In case you want to run tests, you can do so by running `npm run test`.  
+
 
 ## Database Schema
-
 Detailed Table Information
 
 **Users**
@@ -134,7 +141,6 @@ Each category can have many products, a product belongs to one category.
 ![ERD](src/assets/erd.jpg)
 
 ## API Endpoints
-
 ### Authentication
 
 **Authentication Process**
