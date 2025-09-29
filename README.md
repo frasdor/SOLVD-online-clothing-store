@@ -22,6 +22,7 @@ This project is a **personal project** developed as part of the **SOLVD Laba Nod
 It is a backend API that allows you to manage resources for an online clothing store, including products, categories, and available sizes. Customers can search for clothing items by size and category, and the API returns a list of matching products.
 
 ## Setup
+- This project requires **Node.js v18.x** or higher.
 - Install [Docker](https://www.docker.com/).  
 - Clone this repository.  
 - Copy `.env.example` to `.env` and adjust values if needed.

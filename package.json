@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node src/server.js",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "Dorota Frasunkiewicz <frasunkiewicz.dorota@gmail.com>",
